@@ -1,7 +1,6 @@
 package me.toy.practice.modules.account.domain;
 
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.toy.practice.modules.crew.domain.Crew;
@@ -26,11 +25,12 @@ public class Account {
     @JoinColumn(name = "crew_id")
     private Crew crew;
 
-    @Builder
-    public Account(Long id, String username, String password) {
-        this.id = id;
+    public Account(String username, String password, Crew crew) {
         this.username = username;
         this.password = password;
+        if (crew != null) {
+            addCrew(crew);
+        }
     }
 
     public void addCrew(Crew crew) {

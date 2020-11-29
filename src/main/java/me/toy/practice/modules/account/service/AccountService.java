@@ -1,11 +1,12 @@
 package me.toy.practice.modules.account.service;
 
 import lombok.RequiredArgsConstructor;
+import me.toy.practice.modules.account.controller.dto.AccountListDto;
 import me.toy.practice.modules.account.controller.dto.AccountSaveDto;
-import me.toy.practice.modules.account.domain.Account;
 import me.toy.practice.modules.account.domain.repository.AccountRepository;
 import me.toy.practice.modules.crew.domain.Crew;
 import me.toy.practice.modules.crew.domain.repository.CrewRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,13 +22,11 @@ public class AccountService implements UserDetailsService {
 
     public Long saveAccount(AccountSaveDto saveDto) {
         Crew findCrew = crewRepository.findById(saveDto.getCrewId()).orElseThrow(() -> new IllegalArgumentException("crew id : " + saveDto.getCrewId()));
-        Account saveAccount = saveDto.toEntity();
-        saveAccount.addCrew(findCrew);
-        return accountRepository.save(saveAccount).getId();
+        return accountRepository.save(saveDto.toEntity(findCrew)).getId();
     }
 
-    public void getAccounts(Pageable pageable) {
-//        accountRepository.findAccountListDtos(pageable);
+    public Page<AccountListDto> getAccounts(Pageable pageable) {
+        return accountRepository.findAccountListDtos(pageable);
     }
 
     @Override

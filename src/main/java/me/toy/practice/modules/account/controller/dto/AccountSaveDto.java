@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.toy.practice.modules.account.domain.Account;
+import me.toy.practice.modules.crew.domain.Crew;
 
 @NoArgsConstructor
 @Getter
@@ -20,10 +21,7 @@ public class AccountSaveDto {
         this.crewId = crewId;
     }
 
-    public Account toEntity() {
-        return Account.builder()
-                .username(username)
-                .password(password)
-                .build();
+    public Account toEntity(Crew crew) {
+        return new Account(username, password, crew);
     }
 }

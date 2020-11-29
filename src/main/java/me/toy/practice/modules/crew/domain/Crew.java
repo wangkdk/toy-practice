@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import me.toy.practice.modules.account.domain.Account;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,7 +23,7 @@ public class Crew {
     private String description;
 
     @OneToMany(mappedBy = "crew")
-    private List<Account> accounts;
+    private List<Account> accounts = new ArrayList<>();
 
     @Builder
     public Crew(String name, String description) {

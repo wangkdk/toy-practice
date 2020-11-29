@@ -1,15 +1,17 @@
 package me.toy.practice.modules.account.domain.repository;
 
+import com.querydsl.core.QueryResults;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import me.toy.practice.modules.account.controller.dto.AccountListDto;
 import me.toy.practice.modules.account.controller.dto.QAccountListDto;
-import me.toy.practice.modules.account.domain.QAccount;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import javax.persistence.EntityManager;
 
-import static me.toy.practice.modules.account.domain.QAccount.*;
+import static me.toy.practice.modules.account.domain.QAccount.account;
+import static me.toy.practice.modules.crew.domain.QCrew.crew;
 
 public class AccountRepositoryImpl implements AccountRepositoryCustom {
 
@@ -22,11 +24,17 @@ public class AccountRepositoryImpl implements AccountRepositoryCustom {
 
     @Override
     public Page<AccountListDto> findAccountListDtos(Pageable pageable) {
-//        queryFactory
-//                .select(new QAccountListDto(
-//                        account.id, account.username
-//                ))
-
-        return null;
+        QueryResults<AccountListDto> results = queryFactory
+                .select(new QAccountListDto(
+                        account.id.as("accountId"),
+                        account.username.as("accountName"),
+                        crew.name.as("crewName")
+                ))
+                .from(account)
+                .join(account.crew, crew)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetchResults();
+        return new PageImpl<>(results.getResults(), pageable, results.getTotal());
     }
 }
