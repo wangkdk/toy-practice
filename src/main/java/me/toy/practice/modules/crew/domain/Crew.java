@@ -1,13 +1,12 @@
-package me.toy.practice.modules.crew;
+package me.toy.practice.modules.crew.domain;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import me.toy.practice.modules.account.domain.Account;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -22,9 +21,11 @@ public class Crew {
 
     private String description;
 
+    @OneToMany(mappedBy = "crew")
+    private List<Account> accounts;
+
     @Builder
-    public Crew(Long id, String name, String description) {
-        this.id = id;
+    public Crew(String name, String description) {
         this.name = name;
         this.description = description;
     }
