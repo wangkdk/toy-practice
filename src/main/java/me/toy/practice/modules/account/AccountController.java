@@ -1,12 +1,11 @@
 package me.toy.practice.modules.account;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -27,5 +26,10 @@ public class AccountController {
 
         Long savedId = accountService.saveAccount(saveDto);
         return ResponseEntity.ok(savedId);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getAccounts(@PageableDefault(size = 10)Pageable pageable) {
+        return ResponseEntity.ok("ok");
     }
 }
