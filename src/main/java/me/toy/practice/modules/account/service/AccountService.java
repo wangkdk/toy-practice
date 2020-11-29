@@ -1,6 +1,8 @@
-package me.toy.practice.modules.account;
+package me.toy.practice.modules.account.service;
 
 import lombok.RequiredArgsConstructor;
+import me.toy.practice.modules.account.controller.dto.AccountSaveDto;
+import me.toy.practice.modules.account.domain.repository.AccountRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

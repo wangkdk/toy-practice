@@ -1,8 +1,9 @@
-package me.toy.practice.modules.account;
+package me.toy.practice.modules.account.controller.dto;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import me.toy.practice.modules.account.domain.Account;
 
 @NoArgsConstructor
 @Getter

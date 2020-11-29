@@ -1,4 +1,4 @@
-package me.toy.practice.modules.account;
+package me.toy.practice.modules.account.domain;
 
 import lombok.AccessLevel;
 import lombok.Builder;
