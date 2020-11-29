@@ -4,11 +4,9 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import me.toy.practice.modules.crew.domain.Crew;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -24,10 +22,19 @@ public class Account {
     @Column(nullable = false)
     private String password;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "crew_id")
+    private Crew crew;
+
     @Builder
     public Account(Long id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
+    }
+
+    public void addCrew(Crew crew) {
+        this.crew = crew;
+        crew.getAccounts().add(this);
     }
 }

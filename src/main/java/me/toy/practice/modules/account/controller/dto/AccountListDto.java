@@ -1,5 +1,6 @@
 package me.toy.practice.modules.account.controller.dto;
 
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ public class AccountListDto {
     private String accountName;
     private String crewName;
 
-    @Builder
+    @QueryProjection
     public AccountListDto(Long accountId, String accountName, String crewName) {
         this.accountId = accountId;
         this.accountName = accountName;

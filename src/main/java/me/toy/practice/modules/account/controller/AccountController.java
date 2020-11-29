@@ -42,6 +42,7 @@ public class AccountController {
             log.info("s.getDirection : {}", s.getDirection());
         });
         log.info("sort : {}", sort);
+        accountService.getAccounts(pageable);
         return ResponseEntity.ok("ok");
     }
 }
