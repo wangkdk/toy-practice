@@ -71,7 +71,7 @@ class AccountControllerTest extends BaseControllerTest {
         }
 
         // when
-        ResultActions result = mockMvc.perform(get("/account")
+        ResultActions result = mockMvc.perform(get("/account?sort=username,asc&sort=id,desc")
                 .accept(MediaType.APPLICATION_JSON)
         );
 
