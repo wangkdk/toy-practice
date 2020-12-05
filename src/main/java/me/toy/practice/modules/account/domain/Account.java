@@ -3,6 +3,7 @@ package me.toy.practice.modules.account.domain;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import me.toy.practice.infra.entity.BaseEntity;
 import me.toy.practice.modules.crew.domain.Crew;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Account {
+public class Account extends BaseEntity {
 
     @Id @GeneratedValue
     private Long id;

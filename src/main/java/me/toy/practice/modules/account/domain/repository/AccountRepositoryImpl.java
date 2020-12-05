@@ -48,7 +48,9 @@ public class AccountRepositoryImpl implements AccountRepositoryCustom {
                 .select(new QAccountListDto(
                         account.id.as("accountId"),
                         account.username.as("accountName"),
-                        crew.name.as("crewName")
+                        crew.name.as("crewName"),
+                        account.createdBy,
+                        account.updatedDate
                 ))
                 .from(account)
                 .join(account.crew, crew);

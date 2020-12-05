@@ -21,6 +21,7 @@ public class AccountService implements UserDetailsService {
     private final CrewRepository crewRepository;
 
     public Long saveAccount(AccountSaveDto saveDto) {
+        // TODO : 꼭 회원이 crew 를 가질 필요는 없는 방향으로 수정 하기
         Crew findCrew = crewRepository.findById(saveDto.getCrewId()).orElseThrow(() -> new IllegalArgumentException("crew id : " + saveDto.getCrewId()));
         return accountRepository.save(saveDto.toEntity(findCrew)).getId();
     }

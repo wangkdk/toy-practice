@@ -26,7 +26,6 @@ public class AccountController {
     @PostMapping
     public ResponseEntity<?> saveAccount(@RequestBody @Valid AccountSaveDto saveDto, Errors errors) {
         // TODO Validation
-
         if (errors.hasErrors()) {
             ResponseEntity.badRequest();
         }

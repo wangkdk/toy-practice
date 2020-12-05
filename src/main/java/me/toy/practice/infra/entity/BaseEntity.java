@@ -10,9 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 
-@EntityListeners(AuditingEntityListener.class)
 @Getter
-// 속성만 공유
+@EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
 public class BaseEntity extends BaseTimeEntity {
 
